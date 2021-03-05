@@ -3,7 +3,13 @@ using System.Collections;
 using UnityEngine.SceneManagement;
 
 public class Fluxo : MonoBehaviour {
-	public void CarregarFase1(){
+	
+	public void CarregarFase1() {
 		SceneManager.LoadScene ("Fase1");
 	}
+
+	public void Sair() {
+		Application.Quit();
+	}
+
 }
