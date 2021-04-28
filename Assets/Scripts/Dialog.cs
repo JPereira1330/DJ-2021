@@ -5,11 +5,8 @@ using UnityEngine;
 [System.Serializable]
 
 public class Dialog {
+    public Talker _talker;
 
-    [SerializeField] List<string> lines;
-
-    public List<string> Lines {
-    	get { return lines; }
-    }
-
+    [UnityEngine.TextArea]
+    public string[] messages;
 }
