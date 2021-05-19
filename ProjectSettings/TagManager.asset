@@ -3,7 +3,28 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - DIALOG_TITULO
+  - DIALOG_MSG
+  - OBJ_TERRA
+  - DIALOG_BOX
+  - DIALOG_PLANETA
+  - PERSO_02
+  - PERSO_01
+  - OBJ_MARTE
+  - OBJ_TERRA_OLD
+  - MENU_INICIAR
+  - MENU_OPTIONS
+  - CRAFT_SLOT_01
+  - CRAFT_SLOT_02
+  - CRAFT_SLOT_RESULT
+  - ELEMENTO
+  - ELEMENTO_AGUA
+  - ELEMENTO_FOGO
+  - ELEMENTO_PEDRA
+  - ELEMENTO_TERRA
+  - ELEMENTO_MAR
+  - ELEMENTO_ILHA
   layers:
   - Default
   - TransparentFX
@@ -40,4 +61,13 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: BACKGROUND
+    uniqueID: 186033117
+    locked: 0
+  - name: TERRA
+    uniqueID: 4178473489
+    locked: 0
+  - name: DIALOGO
+    uniqueID: 4155894307
     locked: 0
