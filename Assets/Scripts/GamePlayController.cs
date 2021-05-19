@@ -197,10 +197,10 @@ public class GamePlayController : MonoBehaviour {
     }
 
     bool toAuxCraft(string craft01, string craft02) {
+
         if (strSlotCraft01.Equals(craft01) && strSlotCraft02.Equals(craft02)) {
             return true;
-        }
-        else if (strSlotCraft01.Equals(craft02) && strSlotCraft02.Equals(craft01)) {
+        } else if (strSlotCraft01.Equals(craft02) && strSlotCraft02.Equals(craft01)) {
             return true;
         }
 
@@ -225,7 +225,10 @@ public class GamePlayController : MonoBehaviour {
         }
 
         slotCraft02[1].SetActive(false);
+        slotCraft02[1].tag = "";
+
         slotCraft01[1].SetActive(false);
+        slotCraft01[1].tag = "";
     }
 
 }
