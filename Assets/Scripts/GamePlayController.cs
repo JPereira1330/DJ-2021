@@ -224,7 +224,6 @@ public class GamePlayController : MonoBehaviour {
             addElementoOnTable(quantiaElementosSalvo, "ELEMENTO_ILHA", "ILHA", iconElementosIlha);
         }
 
-        toCraft();
         slotCraft02[1].SetActive(false);
         slotCraft01[1].SetActive(false);
     }
