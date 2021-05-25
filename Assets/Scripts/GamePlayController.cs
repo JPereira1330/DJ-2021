@@ -170,11 +170,17 @@ public class GamePlayController : MonoBehaviour {
     }
 
     void addElementoOnTable(int index, string tag, string titulo, Sprite img) {
+        
+        if (verificaSeCraftado(tag)) {
+            return;
+        }
+
         listElementos[index].SetActive(true);
         listElementos[index].tag = tag;
         listElementos[index].GetComponent<Image>().sprite = img;
         listElementos[index].GetComponent<Button>().onClick.AddListener(delegate { addToCraft(titulo, img); });
         listElementos[index].GetComponentInChildren<Text>().text = titulo;
+        
         quantiaElementosSalvo++;
     }
 
@@ -195,8 +201,25 @@ public class GamePlayController : MonoBehaviour {
         }
 
     }
+    bool verificaSeCraftado(string tag) {
+
+        int i;
+
+        for(i=0; i < listElementos.Length; i++) {
+            if (listElementos[i].tag == tag) {
+                return true;
+            }
+        }
+
+        return false;
+    }
 
     bool toAuxCraft(string craft01, string craft02) {
+
+        // N crafta caso algum deles desativado
+        if ( slotCraft01[1].activeSelf == false || slotCraft02[1].activeSelf == false) {
+            return false;
+        }
 
         if (strSlotCraft01.Equals(craft01) && strSlotCraft02.Equals(craft02)) {
             return true;
@@ -216,7 +239,7 @@ public class GamePlayController : MonoBehaviour {
 
         // Craftando Lava
         if (toAuxCraft("FOGO","PEDRA")) {
-            addElementoOnTable(quantiaElementosSalvo, "ELEMENTO_ILHA", "ILHA", iconElementosIlha);
+            addElementoOnTable(quantiaElementosSalvo, "ELEMENTO_LAVA", "LAVA", iconElementosLava);
         }
 
         // Craftando Mar 
@@ -224,11 +247,23 @@ public class GamePlayController : MonoBehaviour {
             addElementoOnTable(quantiaElementosSalvo, "ELEMENTO_ILHA", "ILHA", iconElementosIlha);
         }
 
-        slotCraft02[1].SetActive(false);
-        slotCraft02[1].tag = "";
+        // Craftando Vulcao 
+        if (toAuxCraft("LAVA", "TERRA")) {
+            addElementoOnTable(quantiaElementosSalvo, "ELEMENTO_VULCAO", "VULCAO", iconElementosVulcao);
+        }
 
+        // Craftando Arquipelago 
+        if (toAuxCraft("ILHA", "ILHA")) {
+            addElementoOnTable(quantiaElementosSalvo, "ELEMENTO_ARQUIPELAGO", "ARQUIPELAGO", iconElementosArquipelago);
+        }
+
+        // Craftando Continente 
+        if (toAuxCraft("TERRA", "PEDRA")) {
+            addElementoOnTable(quantiaElementosSalvo, "ELEMENTO_CONTINENTE", "CONTINENTE", iconElementosContinente);
+        }
+
+        slotCraft02[1].SetActive(false);
         slotCraft01[1].SetActive(false);
-        slotCraft01[1].tag = "";
     }
 
 }
