@@ -55,7 +55,7 @@ public class GamePlayController : MonoBehaviour {
 
         // Animações da tela
         playAnimation();
-
+        verificaCapitulo(capitulo);
 
     }
 
@@ -77,9 +77,24 @@ public class GamePlayController : MonoBehaviour {
     }
 
     void initCapitulo(int capitulo) {
+
+        quantiaElementosSalvo = 0;
+        slotCraft01[1].SetActive(false);
+        slotCraft02[1].SetActive(false);
+
         switch (capitulo) {
             case 1:
                 initCapitulo01();
+                break;
+            case 2:
+                initCapitulo02();
+                break;
+        }
+    }
+    void verificaCapitulo(int capitulo) {
+        switch (capitulo) {
+            case 1:
+                verificaCapitulo01();
                 break;
         }
     }
@@ -94,7 +109,107 @@ public class GamePlayController : MonoBehaviour {
 
         addElements(capitulo01);
     }
-    
+
+    void initCapitulo02() {
+
+        string[] capitulo02 = new string[1];
+        capitulo02[0] = "ELEMENTO_AGUA";
+
+        addElements(capitulo02);
+    }
+
+    void verificaCapitulo01() {
+
+        int cont;
+        int resultado = 0;
+
+        // Verifica se existe elemento Agua
+        for(cont = 0; cont < quantiaElementosSalvo; cont++) {
+            if (listElementos[cont].tag.Equals("ELEMENTO_AGUA")) {
+                resultado++;
+                break;
+            }
+        }
+
+        // Verifica se existe elemento Fogo
+        for (cont = 0; cont < quantiaElementosSalvo; cont++) {
+            if (listElementos[cont].tag.Equals("ELEMENTO_FOGO")) {
+                resultado++;
+                break;
+            }
+        }
+
+        // Verifica se existe elemento Pedra
+        for (cont = 0; cont < quantiaElementosSalvo; cont++) {
+            if (listElementos[cont].tag.Equals("ELEMENTO_PEDRA")) {
+                resultado++;
+                break;
+            }
+        }
+
+        // Verifica se existe elemento Terra
+        for (cont = 0; cont < quantiaElementosSalvo; cont++) {
+            if (listElementos[cont].tag.Equals("ELEMENTO_TERRA")) {
+                resultado++;
+                break;
+            }
+        }
+
+        // Verifica se existe elemento Lava
+        for (cont = 0; cont < quantiaElementosSalvo; cont++) {
+            if (listElementos[cont].tag.Equals("ELEMENTO_LAVA")) {
+                resultado++;
+                break;
+            }
+        }
+
+        // Verifica se existe elemento Vulcao
+        for (cont = 0; cont < quantiaElementosSalvo; cont++) {
+            if (listElementos[cont].tag.Equals("ELEMENTO_VULCAO")) {
+                resultado++;
+                break;
+            }
+        }
+
+        // Verifica se existe elemento Mar
+        for (cont = 0; cont < quantiaElementosSalvo; cont++) {
+            if (listElementos[cont].tag.Equals("ELEMENTO_MAR")) {
+                resultado++;
+                break;
+            }
+        }
+
+        // Verifica se existe elemento Ilha
+        for (cont = 0; cont < quantiaElementosSalvo; cont++) {
+            if (listElementos[cont].tag.Equals("ELEMENTO_ILHA")) {
+                resultado++;
+                break;
+            }
+        }
+
+        // Verifica se existe elemento Arquipelago
+        for (cont = 0; cont < quantiaElementosSalvo; cont++) {
+            if (listElementos[cont].tag.Equals("ELEMENTO_ARQUIPELAGO")) {
+                resultado++;
+                break;
+            }
+        }
+
+        // Verifica se existe elemento Continente
+        for (cont = 0; cont < quantiaElementosSalvo; cont++) {
+            if (listElementos[cont].tag.Equals("ELEMENTO_CONTINENTE")) {
+                resultado++;
+                break;
+            }
+        }
+
+        if (resultado >= 10) {
+            capitulo++;
+            initCapitulo(capitulo);
+        }
+
+    }
+
     void addElements(string[] tags) {
 
         int index;
