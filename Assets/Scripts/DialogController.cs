@@ -2,6 +2,8 @@
 using UnityEngine.UI;
 using System.Collections;
 using UnityEngine.SceneManagement;
+using System.Threading;
+using System.Threading.Tasks;
 
 public class DialogController : MonoBehaviour {
 
@@ -20,6 +22,7 @@ public class DialogController : MonoBehaviour {
     private GameObject objBoxDia;
     private GameObject objPlanDg;
     private AudioSource audioCtrl;
+    private AudioSource audioBleep;
 
     private GameObject[] player_01;
     private GameObject[] player_02;
@@ -43,6 +46,7 @@ public class DialogController : MonoBehaviour {
 
         index = 0;
         audioCtrl = GetComponent<AudioSource>();
+        audioBleep = GameObject.FindGameObjectWithTag("GameController").GetComponent<AudioSource>();
 
         objBoxDia.SetActive(false);
         player_01[0].SetActive(false);
@@ -121,8 +125,7 @@ public class DialogController : MonoBehaviour {
         }
 
     }
-
-    void setDialog(string  personagem, string dialogo) {
+    async void setDialog(string  personagem, string dialogo) {
 
         if (personagem == "Programador") {
             objBoxDia.SetActive(true);
@@ -145,8 +148,14 @@ public class DialogController : MonoBehaviour {
         }
 
         txtTitulo.text = personagem;
-        txtDesc.text = dialogo;
-    
+
+        txtDesc.text = "";
+        for (int cont = 0; cont < dialogo.Length; cont++) {
+            txtDesc.text += dialogo[cont];
+            audioBleep.Play();
+            await Task.Delay(90);
+        }
+
     }
 
     void writeHistoriaIntro(int index) {
@@ -165,7 +174,7 @@ public class DialogController : MonoBehaviour {
                 setDialog(pers01, "O que aconteceu aqui? Onde esta a Terra?");
                 break;
             case 1:
-                setDialog(pers02, "Desculpa!!!, fui ligar a cafeteira e puxei o cabo errado");
+                setDialog(pers02, "Desculpa!!!, fui ligar a cafeteira e puxei o cabo errado.");
                 break;
             case 2:
                 setDialog(pers01, "E por que o servidor da terra ainda não esta ligado??");
@@ -198,7 +207,7 @@ public class DialogController : MonoBehaviour {
                 setDialog(pers02, "Posso subir o backup da terra para o servidor?");
                 break;
             case 12:
-                setDialog(pers01, "... Deve! Me avise quando estiver de volta");
+                setDialog(pers01, "... Deve! Me avise quando estiver de volta.");
                 break;
             case 13:
                 exibePlaneta(marte);
