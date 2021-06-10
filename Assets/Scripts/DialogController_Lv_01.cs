@@ -2,7 +2,6 @@
 using UnityEngine.UI;
 using System.Collections;
 using UnityEngine.SceneManagement;
-using System.Threading;
 using System.Threading.Tasks;
 
 public class DialogController : MonoBehaviour {

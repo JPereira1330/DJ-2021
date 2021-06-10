@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Threading.Tasks;
 
 public class GamePlayController : MonoBehaviour {
 
@@ -18,6 +20,7 @@ public class GamePlayController : MonoBehaviour {
     private GameObject[] slotCraft01;
     private GameObject[] slotCraft02;
     private GameObject[] listElementos;
+    private GameObject[] listPendencias;
     
     public Sprite iconElementosAgua;
     public Sprite iconElementosFogo;
@@ -37,6 +40,7 @@ public class GamePlayController : MonoBehaviour {
         slotCraft01 = GameObject.FindGameObjectsWithTag("CRAFT_SLOT_01");
         slotCraft02 = GameObject.FindGameObjectsWithTag("CRAFT_SLOT_02");
         listElementos = GameObject.FindGameObjectsWithTag("ELEMENTO");
+        listPendencias = GameObject.FindGameObjectsWithTag("LIST_PENDENCIA");
 
         // Inicializando valores
         capitulo = 1;
@@ -44,9 +48,14 @@ public class GamePlayController : MonoBehaviour {
         slotCraft01[1].SetActive(false);
         slotCraft02[1].SetActive(false);
 
+        // Iniciando valores da array de pendecias
+        for (int cont = 0; listPendencias.Length > cont; cont++) {
+            listPendencias[cont].GetComponent<Text>().color = Color.red;
+        }
+
         // Inicializando animacoes
         rotationEulerTerra = Vector3.forward * 10 * Time.deltaTime; //increment 10 degrees every second
-
+        
         initCapitulo(capitulo);
     }
 
@@ -55,7 +64,7 @@ public class GamePlayController : MonoBehaviour {
 
         // Animações da tela
         playAnimation();
-        verificaCapitulo(capitulo);
+        verificaCapitulo();
 
     }
 
@@ -91,13 +100,6 @@ public class GamePlayController : MonoBehaviour {
                 break;
         }
     }
-    void verificaCapitulo(int capitulo) {
-        switch (capitulo) {
-            case 1:
-                verificaCapitulo01();
-                break;
-        }
-    }
 
     void initCapitulo01() {
 
@@ -110,100 +112,24 @@ public class GamePlayController : MonoBehaviour {
         addElements(capitulo01);
     }
 
-    void initCapitulo02() {
-
-        string[] capitulo02 = new string[1];
-        capitulo02[0] = "ELEMENTO_AGUA";
-
-        addElements(capitulo02);
+    async void initCapitulo02() {
+        await Task.Delay(500);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
-    void verificaCapitulo01() {
+    void verificaCapitulo() {
 
         int cont;
         int resultado = 0;
 
-        // Verifica se existe elemento Agua
-        for(cont = 0; cont < quantiaElementosSalvo; cont++) {
-            if (listElementos[cont].tag.Equals("ELEMENTO_AGUA")) {
+        for(cont = 0; cont < listPendencias.Length; cont++) {
+            if (listPendencias[cont].GetComponent<Text>().color == Color.green) {
                 resultado++;
                 break;
             }
         }
 
-        // Verifica se existe elemento Fogo
-        for (cont = 0; cont < quantiaElementosSalvo; cont++) {
-            if (listElementos[cont].tag.Equals("ELEMENTO_FOGO")) {
-                resultado++;
-                break;
-            }
-        }
-
-        // Verifica se existe elemento Pedra
-        for (cont = 0; cont < quantiaElementosSalvo; cont++) {
-            if (listElementos[cont].tag.Equals("ELEMENTO_PEDRA")) {
-                resultado++;
-                break;
-            }
-        }
-
-        // Verifica se existe elemento Terra
-        for (cont = 0; cont < quantiaElementosSalvo; cont++) {
-            if (listElementos[cont].tag.Equals("ELEMENTO_TERRA")) {
-                resultado++;
-                break;
-            }
-        }
-
-        // Verifica se existe elemento Lava
-        for (cont = 0; cont < quantiaElementosSalvo; cont++) {
-            if (listElementos[cont].tag.Equals("ELEMENTO_LAVA")) {
-                resultado++;
-                break;
-            }
-        }
-
-        // Verifica se existe elemento Vulcao
-        for (cont = 0; cont < quantiaElementosSalvo; cont++) {
-            if (listElementos[cont].tag.Equals("ELEMENTO_VULCAO")) {
-                resultado++;
-                break;
-            }
-        }
-
-        // Verifica se existe elemento Mar
-        for (cont = 0; cont < quantiaElementosSalvo; cont++) {
-            if (listElementos[cont].tag.Equals("ELEMENTO_MAR")) {
-                resultado++;
-                break;
-            }
-        }
-
-        // Verifica se existe elemento Ilha
-        for (cont = 0; cont < quantiaElementosSalvo; cont++) {
-            if (listElementos[cont].tag.Equals("ELEMENTO_ILHA")) {
-                resultado++;
-                break;
-            }
-        }
-
-        // Verifica se existe elemento Arquipelago
-        for (cont = 0; cont < quantiaElementosSalvo; cont++) {
-            if (listElementos[cont].tag.Equals("ELEMENTO_ARQUIPELAGO")) {
-                resultado++;
-                break;
-            }
-        }
-
-        // Verifica se existe elemento Continente
-        for (cont = 0; cont < quantiaElementosSalvo; cont++) {
-            if (listElementos[cont].tag.Equals("ELEMENTO_CONTINENTE")) {
-                resultado++;
-                break;
-            }
-        }
-
-        if (resultado >= 10) {
+        if (resultado >= (listPendencias.Length-1)) {
             capitulo++;
             initCapitulo(capitulo);
         }
@@ -350,35 +276,55 @@ public class GamePlayController : MonoBehaviour {
         // Craftando Mar
         if (toAuxCraft("AGUA", "AGUA")) {
             addElementoOnTable(quantiaElementosSalvo, "ELEMENTO_MAR", "MAR", iconElementosMar);
+            setFinishPendencia("MAR", true);
         }
 
         // Craftando Lava
         if (toAuxCraft("FOGO","PEDRA")) {
             addElementoOnTable(quantiaElementosSalvo, "ELEMENTO_LAVA", "LAVA", iconElementosLava);
+            setFinishPendencia("LAVA", true);
         }
 
         // Craftando Mar 
         if (toAuxCraft("MAR","TERRA")) {
             addElementoOnTable(quantiaElementosSalvo, "ELEMENTO_ILHA", "ILHA", iconElementosIlha);
+            setFinishPendencia("ILHA", true);
         }
 
         // Craftando Vulcao 
         if (toAuxCraft("LAVA", "TERRA")) {
             addElementoOnTable(quantiaElementosSalvo, "ELEMENTO_VULCAO", "VULCAO", iconElementosVulcao);
+            setFinishPendencia("VULCÃO", true);
         }
 
         // Craftando Arquipelago 
         if (toAuxCraft("ILHA", "ILHA")) {
             addElementoOnTable(quantiaElementosSalvo, "ELEMENTO_ARQUIPELAGO", "ARQUIPELAGO", iconElementosArquipelago);
+            setFinishPendencia("ARQUIPELAGO", true);
         }
 
         // Craftando Continente 
         if (toAuxCraft("TERRA", "PEDRA")) {
             addElementoOnTable(quantiaElementosSalvo, "ELEMENTO_CONTINENTE", "CONTINENTE", iconElementosContinente);
+            setFinishPendencia("CONTINENTE", true);
         }
 
         slotCraft02[1].SetActive(false);
         slotCraft01[1].SetActive(false);
+    }
+
+    void setFinishPendencia(string pendencia, bool finished) {
+
+        int cont;
+        string texto;
+
+        for (cont = 0; cont < listPendencias.Length; cont++) {
+            texto = listPendencias[cont].GetComponent<Text>().text;
+            if (texto.Equals(pendencia)) {
+                listPendencias[cont].GetComponent<Text>().color = Color.green;
+            }
+        }
+
     }
 
 }
