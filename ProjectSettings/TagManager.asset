@@ -29,6 +29,7 @@ TagManager:
   - ELEMENTO_VULCAO
   - ELEMENTO_ARQUIPELAGO
   - ELEMENTO_CONTINENTE
+  - LIST_PENDENCIA
   layers:
   - Default
   - TransparentFX
