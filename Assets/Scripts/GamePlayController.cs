@@ -17,6 +17,7 @@ public class GamePlayController : MonoBehaviour {
     public Sprite btnCancel;
 
     private GameObject planetaTerra;
+    private GameObject levelController;
     private GameObject[] slotCraft01;
     private GameObject[] slotCraft02;
     private GameObject[] listElementos;
@@ -41,16 +42,18 @@ public class GamePlayController : MonoBehaviour {
         slotCraft02 = GameObject.FindGameObjectsWithTag("CRAFT_SLOT_02");
         listElementos = GameObject.FindGameObjectsWithTag("ELEMENTO");
         listPendencias = GameObject.FindGameObjectsWithTag("LIST_PENDENCIA");
+        levelController = GameObject.FindGameObjectWithTag("Finish");
 
         // Inicializando valores
         capitulo = 1;
         quantiaElementosSalvo = 0;
         slotCraft01[1].SetActive(false);
         slotCraft02[1].SetActive(false);
+        levelController.SetActive(false);
 
         // Iniciando valores da array de pendecias
         for (int cont = 0; listPendencias.Length > cont; cont++) {
-            listPendencias[cont].GetComponent<Text>().color = Color.red;
+            listPendencias[cont].GetComponent<Text>().color = Color.clear;
         }
 
         // Inicializando animacoes
@@ -109,12 +112,47 @@ public class GamePlayController : MonoBehaviour {
         capitulo01[2] = "ELEMENTO_TERRA";
         capitulo01[3] = "ELEMENTO_PEDRA";
 
+        for (int cont = 0; listPendencias.Length > cont; cont++) {
+            listPendencias[cont].GetComponent<Text>().color = Color.red;
+        }
+
         addElements(capitulo01);
     }
 
     async void initCapitulo02() {
-        await Task.Delay(500);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+
+        Animator animacao;
+        string[] capitulo02 = new string[4];
+
+        // Realizando animação de troca
+        levelController.SetActive(true);
+        animacao = levelController.GetComponent<Animator>();
+        animacao.SetTrigger("FadeOut");
+
+        await Task.Delay(1500);
+
+        // Elemento inicicias
+        capitulo02[0] = "ELEMENTO_AGUA";
+        capitulo02[1] = "ELEMENTO_FOGO";
+        capitulo02[2] = "ELEMENTO_TERRA";
+        capitulo02[3] = "ELEMENTO_LAVA";
+        addElements(capitulo02);
+
+        // Reorganizando Lista de pendencias
+        for (int cont = 0; listPendencias.Length > cont; cont++) {
+            listPendencias[cont].GetComponent<Text>().color = Color.red;
+            listPendencias[cont].GetComponent<Text>().text = "";
+        }
+
+        listPendencias[0].GetComponent<Text>().text = "BACTERIA";
+        listPendencias[1].GetComponent<Text>().text = "VAPOR";
+        listPendencias[2].GetComponent<Text>().text = "LAMA";
+        listPendencias[3].GetComponent<Text>().text = "MATERIA ORGANICA";
+        listPendencias[4].GetComponent<Text>().text = "OZONIO";
+
+        // Alterando variaveis
+        GameObject.FindGameObjectWithTag("TLT_GP_ANO").GetComponent<Text>().text = "teste";
+        GameObject.FindGameObjectWithTag("TLT_GP_CAP").GetComponent<Text>().text = "TERRA - Capitulo 02";
     }
 
     void verificaCapitulo() {
@@ -125,11 +163,12 @@ public class GamePlayController : MonoBehaviour {
         for(cont = 0; cont < listPendencias.Length; cont++) {
             if (listPendencias[cont].GetComponent<Text>().color == Color.green) {
                 resultado++;
-                break;
+            }else if (listPendencias[cont].GetComponent<Text>().text == "") {
+                resultado++;
             }
         }
 
-        if (resultado >= (listPendencias.Length-1)) {
+        if (resultado >= (listPendencias.Length)) {
             capitulo++;
             initCapitulo(capitulo);
         }

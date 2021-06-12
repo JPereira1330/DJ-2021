@@ -30,6 +30,8 @@ TagManager:
   - ELEMENTO_ARQUIPELAGO
   - ELEMENTO_CONTINENTE
   - LIST_PENDENCIA
+  - TLT_GP_ANO
+  - TLT_GP_CAP
   layers:
   - Default
   - TransparentFX
