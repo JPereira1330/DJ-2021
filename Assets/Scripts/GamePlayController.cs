@@ -33,10 +33,16 @@ public class GamePlayController : MonoBehaviour {
     public Sprite iconElementosIlha;
     public Sprite iconElementosArquipelago;
     public Sprite iconElementosContinente;
+    public Sprite iconElementoBacteria;
+    public Sprite iconElementoVapor;
+    public Sprite iconElementoLama;
+    public Sprite iconElementoMateriaOrganica;
+    public Sprite iconElementoOzonio;
 
     void Start(){
 
         // Inicializacoes objetos
+ 
         planetaTerra = GameObject.FindGameObjectWithTag("OBJ_TERRA");
         slotCraft01 = GameObject.FindGameObjectsWithTag("CRAFT_SLOT_01");
         slotCraft02 = GameObject.FindGameObjectsWithTag("CRAFT_SLOT_02");
@@ -53,7 +59,7 @@ public class GamePlayController : MonoBehaviour {
 
         // Iniciando valores da array de pendecias
         for (int cont = 0; listPendencias.Length > cont; cont++) {
-            listPendencias[cont].GetComponent<Text>().color = Color.clear;
+            listPendencias[cont].GetComponent<Text>().color = Color.red;
         }
 
         // Inicializando animacoes
@@ -94,6 +100,10 @@ public class GamePlayController : MonoBehaviour {
         slotCraft01[1].SetActive(false);
         slotCraft02[1].SetActive(false);
 
+        for (int cont = 0; listElementos.Length > cont; cont++) {
+            listElementos[cont].tag = "ELEMENTO";
+        }
+
         switch (capitulo) {
             case 1:
                 initCapitulo01();
@@ -111,10 +121,6 @@ public class GamePlayController : MonoBehaviour {
         capitulo01[1] = "ELEMENTO_FOGO";
         capitulo01[2] = "ELEMENTO_TERRA";
         capitulo01[3] = "ELEMENTO_PEDRA";
-
-        for (int cont = 0; listPendencias.Length > cont; cont++) {
-            listPendencias[cont].GetComponent<Text>().color = Color.red;
-        }
 
         addElements(capitulo01);
     }
@@ -138,12 +144,7 @@ public class GamePlayController : MonoBehaviour {
         capitulo02[3] = "ELEMENTO_LAVA";
         addElements(capitulo02);
 
-        // Reorganizando Lista de pendencias
-        for (int cont = 0; listPendencias.Length > cont; cont++) {
-            listPendencias[cont].GetComponent<Text>().color = Color.red;
-            listPendencias[cont].GetComponent<Text>().text = "";
-        }
-
+        // Adicionando lista de pendencias
         listPendencias[0].GetComponent<Text>().text = "BACTERIA";
         listPendencias[1].GetComponent<Text>().text = "VAPOR";
         listPendencias[2].GetComponent<Text>().text = "LAMA";
@@ -153,6 +154,8 @@ public class GamePlayController : MonoBehaviour {
         // Alterando variaveis
         GameObject.FindGameObjectWithTag("TLT_GP_ANO").GetComponent<Text>().text = "teste";
         GameObject.FindGameObjectWithTag("TLT_GP_CAP").GetComponent<Text>().text = "TERRA - Capitulo 02";
+        await Task.Delay(3500);
+        levelController.SetActive(false);
     }
 
     void verificaCapitulo() {
@@ -183,6 +186,10 @@ public class GamePlayController : MonoBehaviour {
 
         titulo = "";
         img = null;
+
+        for (int cont = 0; listPendencias.Length > cont; cont++) {
+            listPendencias[cont].GetComponent<Text>().color = Color.red;
+        }
 
         for (index = 0; index < tags.Length; index++) {
 
@@ -312,41 +319,77 @@ public class GamePlayController : MonoBehaviour {
 
     public void toCraft() {
 
-        // Craftando Mar
-        if (toAuxCraft("AGUA", "AGUA")) {
-            addElementoOnTable(quantiaElementosSalvo, "ELEMENTO_MAR", "MAR", iconElementosMar);
-            setFinishPendencia("MAR", true);
+        if (capitulo == 1) {
+            // Craftando Mar
+            if (toAuxCraft("AGUA", "AGUA")) {
+                addElementoOnTable(quantiaElementosSalvo, "ELEMENTO_MAR", "MAR", iconElementosMar);
+                setFinishPendencia("MAR", true);
+            }
+
+            // Craftando Lava
+            if (toAuxCraft("FOGO", "PEDRA")) {
+                addElementoOnTable(quantiaElementosSalvo, "ELEMENTO_LAVA", "LAVA", iconElementosLava);
+                setFinishPendencia("LAVA", true);
+            }
+
+            // Craftando Mar 
+            if (toAuxCraft("MAR", "TERRA")) {
+                addElementoOnTable(quantiaElementosSalvo, "ELEMENTO_ILHA", "ILHA", iconElementosIlha);
+                setFinishPendencia("ILHA", true);
+            }
+
+            // Craftando Vulcao 
+            if (toAuxCraft("LAVA", "TERRA")) {
+                addElementoOnTable(quantiaElementosSalvo, "ELEMENTO_VULCAO", "VULCAO", iconElementosVulcao);
+                setFinishPendencia("VULCÃO", true);
+            }
+
+            // Craftando Arquipelago 
+            if (toAuxCraft("ILHA", "ILHA")) {
+                addElementoOnTable(quantiaElementosSalvo, "ELEMENTO_ARQUIPELAGO", "ARQUIPELAGO", iconElementosArquipelago);
+                setFinishPendencia("ARQUIPELAGO", true);
+            }
+
+            // Craftando Continente 
+            if (toAuxCraft("TERRA", "PEDRA")) {
+                addElementoOnTable(quantiaElementosSalvo, "ELEMENTO_CONTINENTE", "CONTINENTE", iconElementosContinente);
+                setFinishPendencia("CONTINENTE", true);
+            }
+        }else if (capitulo == 2) {
+            
+            // Craftando Bacteria
+            if (toAuxCraft("AGUA", "LAVA")) {
+                addElementoOnTable(quantiaElementosSalvo, "ELEMENTO_BACTERIA", "BACTERIA", iconElementoBacteria);
+                setFinishPendencia("BACTERIA", true);
+            }
+
+            // Craftando Vapor
+            if (toAuxCraft("AGUA", "FOGO")) {
+                addElementoOnTable(quantiaElementosSalvo, "ELEMENTO_VAPOR", "VAPOR", iconElementoVapor);
+                setFinishPendencia("VAPOR", true);
+            }
+
+            // Craftando MATERIA ORGANICA
+            if (toAuxCraft("BACTERIA", "TERRA")) {
+                addElementoOnTable(quantiaElementosSalvo, "ELEMENTO_MAT_ORGANICA", "MATERIA ORGANICA", iconElementoMateriaOrganica);
+                setFinishPendencia("MATERIA ORGANICA", true);
+            }
+
+            // Craftando OZONIO
+            if (toAuxCraft("BACTERIA", "AGUA")) {
+                addElementoOnTable(quantiaElementosSalvo, "ELEMENTO_OZONIO", "OZONIO", iconElementoMateriaOrganica);
+                setFinishPendencia("OZONIO", true);
+            }
+
+            // Craftando LAMA
+            if (toAuxCraft("AGUA", "TERRA")) {
+                addElementoOnTable(quantiaElementosSalvo, "ELEMENTO_LAMA", "LAMA", iconElementoLama);
+                setFinishPendencia("LAMA", true);
+            }
+
         }
 
-        // Craftando Lava
-        if (toAuxCraft("FOGO","PEDRA")) {
-            addElementoOnTable(quantiaElementosSalvo, "ELEMENTO_LAVA", "LAVA", iconElementosLava);
-            setFinishPendencia("LAVA", true);
-        }
 
-        // Craftando Mar 
-        if (toAuxCraft("MAR","TERRA")) {
-            addElementoOnTable(quantiaElementosSalvo, "ELEMENTO_ILHA", "ILHA", iconElementosIlha);
-            setFinishPendencia("ILHA", true);
-        }
-
-        // Craftando Vulcao 
-        if (toAuxCraft("LAVA", "TERRA")) {
-            addElementoOnTable(quantiaElementosSalvo, "ELEMENTO_VULCAO", "VULCAO", iconElementosVulcao);
-            setFinishPendencia("VULCÃO", true);
-        }
-
-        // Craftando Arquipelago 
-        if (toAuxCraft("ILHA", "ILHA")) {
-            addElementoOnTable(quantiaElementosSalvo, "ELEMENTO_ARQUIPELAGO", "ARQUIPELAGO", iconElementosArquipelago);
-            setFinishPendencia("ARQUIPELAGO", true);
-        }
-
-        // Craftando Continente 
-        if (toAuxCraft("TERRA", "PEDRA")) {
-            addElementoOnTable(quantiaElementosSalvo, "ELEMENTO_CONTINENTE", "CONTINENTE", iconElementosContinente);
-            setFinishPendencia("CONTINENTE", true);
-        }
 
         slotCraft02[1].SetActive(false);
         slotCraft01[1].SetActive(false);

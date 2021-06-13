@@ -5175,6 +5175,13 @@ MonoBehaviour:
     type: 3}
   iconElementosContinente: {fileID: 21300000, guid: 9c401d81ecbc56048a2a7012fbc2dbe7,
     type: 3}
+  iconElementoBacteria: {fileID: 21300000, guid: 8d750498ab6c3d44da20e0765a2ed724,
+    type: 3}
+  iconElementoVapor: {fileID: 21300000, guid: 0df7d8c4fc3ea9c41a67388e3675f2de, type: 3}
+  iconElementoLama: {fileID: 21300000, guid: 20096f4214041bd40b59760158f6b57e, type: 3}
+  iconElementoMateriaOrganica: {fileID: 21300000, guid: 9b767b20dbad6514d9e872f90581918c,
+    type: 3}
+  iconElementoOzonio: {fileID: 21300000, guid: a112f9e1a7e319b45aa0ce766896bc7b, type: 3}
 --- !u!4 &2048052464
 Transform:
   m_ObjectHideFlags: 0

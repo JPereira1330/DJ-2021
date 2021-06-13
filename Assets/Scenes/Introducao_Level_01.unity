@@ -359,11 +359,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 219005675}
-  - component: {fileID: 219005674}
   - component: {fileID: 219005676}
+  - component: {fileID: 219005674}
   m_Layer: 0
   m_Name: ScriptController
-  m_TagString: Untagged
+  m_TagString: GameController
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

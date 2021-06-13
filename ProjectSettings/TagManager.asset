@@ -32,6 +32,11 @@ TagManager:
   - LIST_PENDENCIA
   - TLT_GP_ANO
   - TLT_GP_CAP
+  - ELEMENTO_BACTERIA
+  - ELEMENTO_VAPOR
+  - ELEMENTO_MAT_ORGANICA
+  - ELEMENTO_OZONIO
+  - ELEMENTO_LAMA
   layers:
   - Default
   - TransparentFX
