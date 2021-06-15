@@ -111,6 +111,10 @@ public class GamePlayController : MonoBehaviour {
                 initCapitulo01();
                 break;
             case 2:
+
+                GetComponent<AudioSource>().clip = audioController[1];
+                GetComponent<AudioSource>().Play();
+
                 initCapitulo02();
                 break;
         }
@@ -136,7 +140,7 @@ public class GamePlayController : MonoBehaviour {
         levelController.SetActive(true);
         animacao = levelController.GetComponent<Animator>();
         animacao.SetTrigger("FadeOut");
-
+        
         await Task.Delay(1500);
 
         // Elemento inicicias
