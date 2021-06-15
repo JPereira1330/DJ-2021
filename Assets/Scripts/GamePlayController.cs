@@ -72,7 +72,7 @@ public class GamePlayController : MonoBehaviour {
     // Update is called once per frame
     void Update(){
 
-        // Animações da tela
+        // AnimaÃ§Ãµes da tela
         playAnimation();
         verificaCapitulo();
 
@@ -105,15 +105,18 @@ public class GamePlayController : MonoBehaviour {
             listElementos[cont].tag = "ELEMENTO";
         }
 
+        for (int i = 0; i < listPendencias.Length; i++) {
+            listPendencias[i].GetComponent<Text>().color = Color.red;
+        }
+
+        GetComponent<AudioSource>().clip = audioController[1];
+        GetComponent<AudioSource>().Play();
+
         switch (capitulo) {
             case 1:
                 initCapitulo01();
                 break;
             case 2:
-
-                GetComponent<AudioSource>().clip = audioController[1];
-                GetComponent<AudioSource>().Play();
-
                 initCapitulo02();
                 break;
         }
@@ -135,7 +138,7 @@ public class GamePlayController : MonoBehaviour {
         Animator animacao;
         string[] capitulo02 = new string[4];
 
-        // Realizando animação de troca
+        // Realizando animaÃ§Ã£o de troca
         levelController.SetActive(true);
         animacao = levelController.GetComponent<Animator>();
         animacao.SetTrigger("FadeOut");
@@ -309,6 +312,8 @@ public class GamePlayController : MonoBehaviour {
 
     bool toAuxCraft(string craft01, string craft02) {
 
+        Debug.Log(craft01+" - "+craft02);
+
         // N crafta caso algum deles desativado
         if ( slotCraft01[1].activeSelf == false || slotCraft02[1].activeSelf == false) {
             return false;
@@ -347,7 +352,7 @@ public class GamePlayController : MonoBehaviour {
             // Craftando Vulcao 
             if (toAuxCraft("LAVA", "TERRA")) {
                 addElementoOnTable(quantiaElementosSalvo, "ELEMENTO_VULCAO", "VULCAO", iconElementosVulcao);
-                setFinishPendencia("VULCÃO", true);
+                setFinishPendencia("VULCÃƒO", true);
             }
 
             // Craftando Arquipelago 
