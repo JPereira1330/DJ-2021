@@ -38,6 +38,8 @@ TagManager:
   - ELEMENTO_OZONIO
   - ELEMENTO_LAMA
   - AUDIO_BLEEP
+  - LEVEL_TITLE
+  - LEVEL_SUBTITLE
   layers:
   - Default
   - TransparentFX

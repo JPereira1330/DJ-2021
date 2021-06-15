@@ -40,6 +40,7 @@ public class GamePlayController : MonoBehaviour {
     public Sprite iconElementoOzonio;
 
     public AudioClip[] audioController;
+    public Sprite[] planetas;
 
     void Start(){
 
@@ -122,15 +123,32 @@ public class GamePlayController : MonoBehaviour {
         }
     }
 
-    void initCapitulo01() {
+    async void initCapitulo01() {
 
+        Animator animacao;
         string[] capitulo01 = new string[4];
+
+        // Configurando animação
+        levelController.SetActive(true);
+        GameObject.FindGameObjectWithTag("LEVEL_TITLE").GetComponent<Text>().text = "C A P I T U L O  -  0 1";
+        GameObject.FindGameObjectWithTag("LEVEL_SUBTITLE").GetComponent<Text>().text = "CRIAÇÃO DO PLANETA";
+
+        // Realizando animação de troca
+        animacao = levelController.GetComponent<Animator>();
+        animacao.SetTrigger("FadeOut");
+        GameObject.FindGameObjectWithTag("OBJ_TERRA").GetComponent<Image>().sprite = planetas[0];
+
+        await Task.Delay(1500);
+
         capitulo01[0] = "ELEMENTO_AGUA";
         capitulo01[1] = "ELEMENTO_FOGO";
         capitulo01[2] = "ELEMENTO_TERRA";
         capitulo01[3] = "ELEMENTO_PEDRA";
 
         addElements(capitulo01);
+
+        await Task.Delay(3500);
+        levelController.SetActive(false);
     }
 
     async void initCapitulo02() {
@@ -138,8 +156,12 @@ public class GamePlayController : MonoBehaviour {
         Animator animacao;
         string[] capitulo02 = new string[4];
 
-        // Realizando animação de troca
+        // Configura animacao
         levelController.SetActive(true);
+        GameObject.FindGameObjectWithTag("LEVEL_TITLE").GetComponent<Text>().text = "C A P I T U L O  -  0 2";
+        GameObject.FindGameObjectWithTag("LEVEL_SUBTITLE").GetComponent<Text>().text = "TRANSFORMAÇÃO DO PLANETA";
+
+        // Realizando animação de troca
         animacao = levelController.GetComponent<Animator>();
         animacao.SetTrigger("FadeOut");
         
@@ -158,6 +180,8 @@ public class GamePlayController : MonoBehaviour {
         listPendencias[2].GetComponent<Text>().text = "LAMA";
         listPendencias[3].GetComponent<Text>().text = "MATERIA ORGANICA";
         listPendencias[4].GetComponent<Text>().text = "OZONIO";
+
+        GameObject.FindGameObjectWithTag("OBJ_TERRA").GetComponent<Image>().sprite = planetas[1];
 
         // Alterando variaveis
         GameObject.FindGameObjectWithTag("TLT_GP_ANO").GetComponent<Text>().text = "teste";
