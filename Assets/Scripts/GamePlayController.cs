@@ -139,6 +139,9 @@ public class GamePlayController : MonoBehaviour {
             case 3:
                 initCapitulo03();
                 break;
+            case 4:
+                initCapitulo04();
+                break;
         }
     }
 
@@ -250,6 +253,7 @@ public class GamePlayController : MonoBehaviour {
         listPendencias[6].GetComponent<Text>().text = "ENGENHARIA";
         listPendencias[7].GetComponent<Text>().text = "MAQUINA";
         listPendencias[8].GetComponent<Text>().text = "COMPUTADOR";
+        listPendencias[9].GetComponent<Text>().text = "";
 
         GameObject.FindGameObjectWithTag("OBJ_TERRA").GetComponent<Image>().sprite = planetas[2];
 
@@ -259,6 +263,28 @@ public class GamePlayController : MonoBehaviour {
         await Task.Delay(3500);
         levelController.SetActive(false);
     }
+
+    async void initCapitulo04() {
+
+        Animator animacao;
+        string[] capitulo03 = new string[5];
+
+        // Configura animacao
+        levelController.SetActive(true);
+        GameObject.FindGameObjectWithTag("LEVEL_TITLE").GetComponent<Text>().text = "F I M";
+        GameObject.FindGameObjectWithTag("LEVEL_SUBTITLE").GetComponent<Text>().text = "EVOLUÇÃO CONCLUIDA";
+
+        // Realizando animação de troca
+        animacao = levelController.GetComponent<Animator>();
+        animacao.SetTrigger("FadeOut");
+
+        await Task.Delay(2000);
+        GameObject.FindGameObjectWithTag("TLT_GP_ANO").GetComponent<Text>().text = "15.06.2021";
+        GameObject.FindGameObjectWithTag("TLT_GP_CAP").GetComponent<Text>().text = "TERRA";
+        await Task.Delay(3500);
+        levelController.SetActive(false);
+    }
+
 
     void verificaCapitulo() {
 
@@ -473,8 +499,9 @@ public class GamePlayController : MonoBehaviour {
                 addElementoOnTable(quantiaElementosSalvo, "ELEMENTO_CONTINENTE", "CONTINENTE", iconElementosContinente);
                 setFinishPendencia("CONTINENTE", true);
             }
-        }else if (capitulo == 2) {
-            
+        }
+        else if (capitulo == 2) {
+
             // Craftando Bacteria
             if (toAuxCraft("AGUA", "LAVA")) {
                 addElementoOnTable(quantiaElementosSalvo, "ELEMENTO_BACTERIA", "BACTERIA", iconElementoBacteria);
@@ -535,9 +562,65 @@ public class GamePlayController : MonoBehaviour {
                 setFinishPendencia("VIDA", true);
             }
 
+        } else if (capitulo == 3) {
+
+            // Craftando ANIMAL
+            if (toAuxCraft("VIDA", "TERRA")) {
+                addElementoOnTable(quantiaElementosSalvo, "ELEMENTO_ANIMAL", "ANIMAL", iconElementoAnimal);
+                setFinishPendencia("ANIMAL", true);
+            }
+
+            // Craftando MACACO
+            if (toAuxCraft("ANIMAL", "ARVORE")) {
+                addElementoOnTable(quantiaElementosSalvo, "ELEMENTO_MACACO", "MACACO", iconElementoMacaco);
+                setFinishPendencia("MACACO", true);
+            }
+
+            // Craftando PEIXE
+            if (toAuxCraft("ANIMAL", "MAR")) {
+                addElementoOnTable(quantiaElementosSalvo, "ELEMENTO_PEIXE", "PEIXE", iconElementoPeixe);
+                setFinishPendencia("PEIXE", true);
+            }
+
+            // Craftando FERRAMENTA
+            if (toAuxCraft("MACACO", "IDEIA")) {
+                addElementoOnTable(quantiaElementosSalvo, "ELEMENTO_FERRAMENTA", "FERRAMENTA", iconElementoFerramenta);
+                setFinishPendencia("FERRAMENTA", true);
+            }
+
+            // Craftando HUMANO
+            if (toAuxCraft("MACACO", "FERRAMENTA")) {
+                addElementoOnTable(quantiaElementosSalvo, "ELEMENTO_HUMANO", "HUMANO", iconElementoHumano);
+                setFinishPendencia("HUMANO", true);
+            }
+
+            // Craftando FILOSOFIA
+            if (toAuxCraft("HUMANO", "IDEIA")) {
+                addElementoOnTable(quantiaElementosSalvo, "ELEMENTO_FILOSOFIA", "FILOSOFIA", iconElementoFilosofia);
+                setFinishPendencia("FILOSOFIA", true);
+            }
+
+            // Craftando ENGENHARIA
+            if (toAuxCraft("HUMANO", "FILOSOFIA")) {
+                addElementoOnTable(quantiaElementosSalvo, "ELEMENTO_ENGENHARIA", "ENGENHARIA", iconElementoEngenharia);
+                setFinishPendencia("ENGENHARIA", true);
+            }
+
+            // Craftando MAQUINA
+            if (toAuxCraft("HUMANO", "ENGENHARIA")) {
+                addElementoOnTable(quantiaElementosSalvo, "ELEMENTO_MAQUINA", "MAQUINA", iconElementoMaquina);
+                setFinishPendencia("MAQUINA", true);
+            }
+
+            // Craftando COMPUTADOR
+            if (toAuxCraft("HUMANO", "MAQUINA")) {
+                addElementoOnTable(quantiaElementosSalvo, "ELEMENTO_COMPUTADOR", "COMPUTADOR", iconElementoComputador);
+                setFinishPendencia("COMPUTADOR", true);
+            }
+
         }
 
-        slotCraft02[1].SetActive(false);
+            slotCraft02[1].SetActive(false);
         slotCraft01[1].SetActive(false);
     }
 
