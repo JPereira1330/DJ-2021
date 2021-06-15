@@ -69,7 +69,7 @@ public class GamePlayController : MonoBehaviour {
         GameObject.FindGameObjectWithTag("EditorOnly").SetActive(true);
         
         // Inicializando valores
-        capitulo = 3;
+        capitulo = 1;
         quantiaElementosSalvo = 0;
         slotCraft01[1].SetActive(false);
         slotCraft02[1].SetActive(false);
