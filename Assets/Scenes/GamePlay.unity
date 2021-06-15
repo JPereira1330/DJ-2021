@@ -3803,7 +3803,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1889509099}
   - component: {fileID: 1889509098}
+  - component: {fileID: 1889509100}
   - component: {fileID: 1889509097}
+  - component: {fileID: 1889509101}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -3859,6 +3861,30 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1889509100
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1889509096}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ed56f7e7fc78974bbdd7f770f494f69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1889509101
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1889509096}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6e02139493349247a07a14a0b570ff0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1981255998
 GameObject:
   m_ObjectHideFlags: 0
@@ -4184,7 +4210,7 @@ GameObject:
   - component: {fileID: 2048052466}
   m_Layer: 0
   m_Name: ScriptController
-  m_TagString: Untagged
+  m_TagString: Musica_Game
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

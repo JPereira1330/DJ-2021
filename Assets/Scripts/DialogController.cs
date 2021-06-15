@@ -46,7 +46,7 @@ public class DialogController : MonoBehaviour {
 
         index = 0;
         audioCtrl = GetComponent<AudioSource>();
-        audioBleep = GameObject.FindGameObjectWithTag("GameController").GetComponent<AudioSource>();
+        audioBleep = GameObject.FindGameObjectWithTag("Musica_Intro2").GetComponent<AudioSource>();
 
         objBoxDia.SetActive(false);
         player_01[0].SetActive(false);
@@ -201,7 +201,7 @@ public class DialogController : MonoBehaviour {
                 setDialog(pers01, "... O que?");
                 break;
             case 10:
-                setDialog(pers01, "Vocês só me decpcionam, pela sétima vez que perdemos os dados da terra.");
+                setDialog(pers01, "Vocês só me decepcionam, pela sétima vez que perdemos os dados da terra.");
                 break;
             case 11:
                 setDialog(pers02, "Posso subir o backup da terra para o servidor?");

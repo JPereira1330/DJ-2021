@@ -29,6 +29,11 @@ TagManager:
   - ELEMENTO_VULCAO
   - ELEMENTO_ARQUIPELAGO
   - ELEMENTO_CONTINENTE
+  - Musica_Menu
+  - Musica_Game
+  - Musica_Intro
+  - musica
+  - Musica_Intro2
   layers:
   - Default
   - TransparentFX
