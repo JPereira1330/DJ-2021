@@ -51,7 +51,7 @@ public class GamePlayController : MonoBehaviour {
         listElementos = GameObject.FindGameObjectsWithTag("ELEMENTO");
         listPendencias = GameObject.FindGameObjectsWithTag("LIST_PENDENCIA");
         levelController = GameObject.FindGameObjectWithTag("Finish");
-
+        GameObject.FindGameObjectWithTag("EditorOnly").SetActive(true);
         // Inicializando valores
         capitulo = 1;
         quantiaElementosSalvo = 0;
@@ -138,7 +138,8 @@ public class GamePlayController : MonoBehaviour {
         animacao.SetTrigger("FadeOut");
         GameObject.FindGameObjectWithTag("OBJ_TERRA").GetComponent<Image>().sprite = planetas[0];
 
-        await Task.Delay(1500);
+        await Task.Delay(2000);
+        GameObject.FindGameObjectWithTag("EditorOnly").SetActive(false);
 
         capitulo01[0] = "ELEMENTO_AGUA";
         capitulo01[1] = "ELEMENTO_FOGO";
