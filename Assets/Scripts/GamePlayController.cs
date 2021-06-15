@@ -38,6 +38,11 @@ public class GamePlayController : MonoBehaviour {
     public Sprite iconElementoLama;
     public Sprite iconElementoMateriaOrganica;
     public Sprite iconElementoOzonio;
+    public Sprite iconElementoOceano;
+    public Sprite iconElementoPlanta;
+    public Sprite iconElementoSemente;
+    public Sprite iconElementoArvore;
+    public Sprite iconElementoVida;
 
     public AudioClip[] audioController;
     public Sprite[] planetas;
@@ -156,7 +161,7 @@ public class GamePlayController : MonoBehaviour {
     async void initCapitulo02() {
 
         Animator animacao;
-        string[] capitulo02 = new string[4];
+        string[] capitulo02 = new string[5];
 
         // Configura animacao
         levelController.SetActive(true);
@@ -174,6 +179,7 @@ public class GamePlayController : MonoBehaviour {
         capitulo02[1] = "ELEMENTO_FOGO";
         capitulo02[2] = "ELEMENTO_TERRA";
         capitulo02[3] = "ELEMENTO_LAVA";
+        capitulo02[4] = "ELEMENTO_MAR";
         addElements(capitulo02);
 
         // Adicionando lista de pendencias
@@ -181,12 +187,17 @@ public class GamePlayController : MonoBehaviour {
         listPendencias[1].GetComponent<Text>().text = "VAPOR";
         listPendencias[2].GetComponent<Text>().text = "LAMA";
         listPendencias[3].GetComponent<Text>().text = "MATERIA ORGANICA";
-        listPendencias[4].GetComponent<Text>().text = "OZONIO";
+        listPendencias[4].GetComponent<Text>().text = "OCEANO";
+        listPendencias[5].GetComponent<Text>().text = "OZONIO";
+        listPendencias[6].GetComponent<Text>().text = "PLANTA";
+        listPendencias[7].GetComponent<Text>().text = "SEMENTE";
+        listPendencias[8].GetComponent<Text>().text = "ARVORE";
+        listPendencias[9].GetComponent<Text>().text = "VIDA";
 
         GameObject.FindGameObjectWithTag("OBJ_TERRA").GetComponent<Image>().sprite = planetas[1];
 
         // Alterando variaveis
-        GameObject.FindGameObjectWithTag("TLT_GP_ANO").GetComponent<Text>().text = "teste";
+        GameObject.FindGameObjectWithTag("TLT_GP_ANO").GetComponent<Text>().text = "3 MILHOES DE ANOS ATRAS";
         GameObject.FindGameObjectWithTag("TLT_GP_CAP").GetComponent<Text>().text = "TERRA - Capitulo 02";
         await Task.Delay(3500);
         levelController.SetActive(false);
@@ -413,8 +424,8 @@ public class GamePlayController : MonoBehaviour {
             }
 
             // Craftando OZONIO
-            if (toAuxCraft("BACTERIA", "AGUA")) {
-                addElementoOnTable(quantiaElementosSalvo, "ELEMENTO_OZONIO", "OZONIO", iconElementoMateriaOrganica);
+            if (toAuxCraft("BACTERIA", "OCEANO")) {
+                addElementoOnTable(quantiaElementosSalvo, "ELEMENTO_OZONIO", "OZONIO", iconElementoOzonio);
                 setFinishPendencia("OZONIO", true);
             }
 
@@ -422,6 +433,36 @@ public class GamePlayController : MonoBehaviour {
             if (toAuxCraft("AGUA", "TERRA")) {
                 addElementoOnTable(quantiaElementosSalvo, "ELEMENTO_LAMA", "LAMA", iconElementoLama);
                 setFinishPendencia("LAMA", true);
+            }
+
+            // Craftando OCEANO
+            if (toAuxCraft("MAR", "MAR")) {
+                addElementoOnTable(quantiaElementosSalvo, "ELEMENTO_OCEANO", "OCEANO", iconElementoOceano);
+                setFinishPendencia("OCEANO", true);
+            }
+
+            // Craftando PLANTA
+            if (toAuxCraft("SEMENTE", "SEMENTE")) {
+                addElementoOnTable(quantiaElementosSalvo, "ELEMENTO_PLANTA", "PLANTA", iconElementoPlanta);
+                setFinishPendencia("PLANTA", true);
+            }
+
+            // Craftando SEMENTE
+            if (toAuxCraft("MATERIA ORGANICA", "TERRA")) {
+                addElementoOnTable(quantiaElementosSalvo, "ELEMENTO_SEMENTE", "SEMENTE", iconElementoSemente);
+                setFinishPendencia("SEMENTE", true);
+            }
+
+            // Craftando ARVORE
+            if (toAuxCraft("PLANTA", "PLANTA")) {
+                addElementoOnTable(quantiaElementosSalvo, "ELEMENTO_ARVORE", "ARVORE", iconElementoArvore);
+                setFinishPendencia("ARVORE", true);
+            }
+
+            // Craftando VIDA
+            if (toAuxCraft("BACTERIA", "OCEANO")) {
+                addElementoOnTable(quantiaElementosSalvo, "ELEMENTO_VIDA", "VIDA", iconElementoVida);
+                setFinishPendencia("VIDA", true);
             }
 
         }

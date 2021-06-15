@@ -43,6 +43,11 @@ TagManager:
   - Musica_Menu
   - Musica_Intro
   - Musica_Game
+  - ELEMENTO_OCEANO
+  - ELEMENTO_PLANTA
+  - ELEMENTO_SEMENTE
+  - ELEMENTO_ARVORE
+  - ELEMENTO_VIDA
   layers:
   - Default
   - TransparentFX
