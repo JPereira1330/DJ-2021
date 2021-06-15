@@ -52,6 +52,7 @@ public class GamePlayController : MonoBehaviour {
         listPendencias = GameObject.FindGameObjectsWithTag("LIST_PENDENCIA");
         levelController = GameObject.FindGameObjectWithTag("Finish");
         GameObject.FindGameObjectWithTag("EditorOnly").SetActive(true);
+        
         // Inicializando valores
         capitulo = 1;
         quantiaElementosSalvo = 0;

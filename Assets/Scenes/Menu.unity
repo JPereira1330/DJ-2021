@@ -208,13 +208,25 @@ MonoBehaviour:
   m_FillRect: {fileID: 1075782895}
   m_HandleRect: {fileID: 1781507929}
   m_Direction: 0
-  m_MinValue: 0
+  m_MinValue: 1
   m_MaxValue: 100
   m_WholeNumbers: 1
-  m_Value: 50
+  m_Value: 100
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 49458404}
+        m_TargetAssemblyTypeName: AudioController, Assembly-CSharp
+        m_MethodName: trocaValumeMusica
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 12056885}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Slider, UnityEngine.UI
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &36049570
 GameObject:
   m_ObjectHideFlags: 0
@@ -395,9 +407,10 @@ GameObject:
   - component: {fileID: 49458403}
   - component: {fileID: 49458402}
   - component: {fileID: 49458401}
+  - component: {fileID: 49458404}
   m_Layer: 0
   m_Name: SceneController
-  m_TagString: Untagged
+  m_TagString: Musica_Menu
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -524,6 +537,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &49458404
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 49458400}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 799d714ec4f47c9428ca99669221fbe7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &96808647
 GameObject:
   m_ObjectHideFlags: 0
@@ -1381,13 +1406,25 @@ MonoBehaviour:
   m_FillRect: {fileID: 96808648}
   m_HandleRect: {fileID: 1507522090}
   m_Direction: 0
-  m_MinValue: 0
+  m_MinValue: 1
   m_MaxValue: 100
   m_WholeNumbers: 1
-  m_Value: 50
+  m_Value: 100
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 49458404}
+        m_TargetAssemblyTypeName: AudioController, Assembly-CSharp
+        m_MethodName: trocaValumePrincipal
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 669318571}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Slider, UnityEngine.UI
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &829768148
 GameObject:
   m_ObjectHideFlags: 0

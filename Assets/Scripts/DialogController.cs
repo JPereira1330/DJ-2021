@@ -45,7 +45,7 @@ public class DialogController : MonoBehaviour {
 
         index = 0;
         audioCtrl = GetComponent<AudioSource>();
-        audioBleep = GameObject.FindGameObjectWithTag("AUDIO_BLEEP").GetComponent<AudioSource>();
+        audioBleep = GameObject.FindGameObjectWithTag("Musica_Intro").GetComponent<AudioSource>();
 
         objBoxDia.SetActive(false);
         player_01[0].SetActive(false);
