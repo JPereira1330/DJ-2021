@@ -37,6 +37,7 @@ TagManager:
   - ELEMENTO_MAT_ORGANICA
   - ELEMENTO_OZONIO
   - ELEMENTO_LAMA
+  - AUDIO_BLEEP
   layers:
   - Default
   - TransparentFX

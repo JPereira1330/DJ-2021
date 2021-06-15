@@ -39,6 +39,8 @@ public class GamePlayController : MonoBehaviour {
     public Sprite iconElementoMateriaOrganica;
     public Sprite iconElementoOzonio;
 
+    public AudioClip[] audioController;
+
     void Start(){
 
         // Inicializacoes objetos
@@ -389,8 +391,6 @@ public class GamePlayController : MonoBehaviour {
 
         }
 
-
-
         slotCraft02[1].SetActive(false);
         slotCraft01[1].SetActive(false);
     }
@@ -404,6 +404,8 @@ public class GamePlayController : MonoBehaviour {
             texto = listPendencias[cont].GetComponent<Text>().text;
             if (texto.Equals(pendencia)) {
                 listPendencias[cont].GetComponent<Text>().color = Color.green;
+                GetComponent<AudioSource>().clip = audioController[0];
+                GetComponent<AudioSource>().Play();
             }
         }
 

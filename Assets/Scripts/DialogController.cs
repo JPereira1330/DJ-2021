@@ -45,7 +45,7 @@ public class DialogController : MonoBehaviour {
 
         index = 0;
         audioCtrl = GetComponent<AudioSource>();
-        audioBleep = GameObject.FindGameObjectWithTag("GameController").GetComponent<AudioSource>();
+        audioBleep = GameObject.FindGameObjectWithTag("AUDIO_BLEEP").GetComponent<AudioSource>();
 
         objBoxDia.SetActive(false);
         player_01[0].SetActive(false);
@@ -194,13 +194,13 @@ public class DialogController : MonoBehaviour {
                 setDialog(pers01, "E??? Prossiga!");
                 break;
             case 8:
-                setDialog(pers02, "O ultimo backup foi feito a 300 mil anos atras!");
+                setDialog(pers02, "O ultimo backup foi feito a 4 bilhoes de anos atras!");
                 break;
             case 9:
                 setDialog(pers01, "... O que?");
                 break;
             case 10:
-                setDialog(pers01, "Vocês só me decpcionam, pela sétima vez que perdemos os dados da terra.");
+                setDialog(pers01, "Vocês só me Decepcionam, pela sétima vez que perdemos os dados da terra.");
                 break;
             case 11:
                 setDialog(pers02, "Posso subir o backup da terra para o servidor?");
