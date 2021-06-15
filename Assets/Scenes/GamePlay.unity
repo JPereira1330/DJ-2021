@@ -6746,12 +6746,28 @@ MonoBehaviour:
     type: 3}
   iconElementoArvore: {fileID: 21300000, guid: 37da221a349cb7d458f4447b52fa6ff1, type: 3}
   iconElementoVida: {fileID: 21300000, guid: c57a4fec248a01641b2047fd9ec2fc1b, type: 3}
+  iconElementoIdeia: {fileID: 21300000, guid: 90f29f6e1407f3e4e8653457efa8b6ce, type: 3}
+  iconElementoAnimal: {fileID: 21300000, guid: cb771b3e2623f3a45908ecebe01e7976, type: 3}
+  iconElementoMacaco: {fileID: 21300000, guid: 0556e474afdae47468921423ef714843, type: 3}
+  iconElementoPeixe: {fileID: 21300000, guid: df927c9213b01ff4a9eeaf34980fc17f, type: 3}
+  iconElementoFerramenta: {fileID: 21300000, guid: bbabc5b7d23f44447b05ab69f3e9fe18,
+    type: 3}
+  iconElementoHumano: {fileID: 21300000, guid: b9b95d6960f8de34b8a335d8aa95c14f, type: 3}
+  iconElementoFilosofia: {fileID: 21300000, guid: 0da7f298c6ed6b54681a9806519e9d12,
+    type: 3}
+  iconElementoEngenharia: {fileID: 21300000, guid: 24b63a121f5f0174980154d7b9888a2c,
+    type: 3}
+  iconElementoMaquina: {fileID: 21300000, guid: 5ee5dafa7dcdd8348b51404f6aafd106,
+    type: 3}
+  iconElementoComputador: {fileID: 21300000, guid: 19706b90802a1504f9dc2795a7e1ebf8,
+    type: 3}
   audioController:
   - {fileID: 8300000, guid: aba2d3a90e47b844992fd5efd9d2a32c, type: 3}
   - {fileID: 8300000, guid: 53a9f64ebd7b666479251a7c1b0a1457, type: 3}
   planetas:
   - {fileID: 21300000, guid: 1aa0b41acc4ac2e40a47c31401de8bb3, type: 3}
   - {fileID: 21300000, guid: 50e977bc2311ed34fb5fefdc94c0e0e4, type: 3}
+  - {fileID: 21300000, guid: ae5ac46d86a7e6a45ad85324400013a5, type: 3}
 --- !u!4 &2048052464
 Transform:
   m_ObjectHideFlags: 0

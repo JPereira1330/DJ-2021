@@ -48,6 +48,7 @@ TagManager:
   - ELEMENTO_SEMENTE
   - ELEMENTO_ARVORE
   - ELEMENTO_VIDA
+  - ELEMENTO_IDEIA
   layers:
   - Default
   - TransparentFX

@@ -200,7 +200,7 @@ public class DialogController : MonoBehaviour {
                 setDialog(pers01, "... O que?");
                 break;
             case 10:
-                setDialog(pers01, "Vocês só me Decepcionam, pela sétima vez que perdemos os dados da terra.");
+                setDialog(pers01, "Vocês só me decepcionam, pela sétima vez que perdemos os dados da terra.");
                 break;
             case 11:
                 setDialog(pers02, "Posso subir o backup da terra para o servidor?");

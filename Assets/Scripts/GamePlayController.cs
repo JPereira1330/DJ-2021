@@ -43,6 +43,16 @@ public class GamePlayController : MonoBehaviour {
     public Sprite iconElementoSemente;
     public Sprite iconElementoArvore;
     public Sprite iconElementoVida;
+    public Sprite iconElementoIdeia;
+    public Sprite iconElementoAnimal;
+    public Sprite iconElementoMacaco;
+    public Sprite iconElementoPeixe;
+    public Sprite iconElementoFerramenta;
+    public Sprite iconElementoHumano;
+    public Sprite iconElementoFilosofia;
+    public Sprite iconElementoEngenharia;
+    public Sprite iconElementoMaquina;
+    public Sprite iconElementoComputador;
 
     public AudioClip[] audioController;
     public Sprite[] planetas;
@@ -59,7 +69,7 @@ public class GamePlayController : MonoBehaviour {
         GameObject.FindGameObjectWithTag("EditorOnly").SetActive(true);
         
         // Inicializando valores
-        capitulo = 1;
+        capitulo = 3;
         quantiaElementosSalvo = 0;
         slotCraft01[1].SetActive(false);
         slotCraft02[1].SetActive(false);
@@ -125,6 +135,9 @@ public class GamePlayController : MonoBehaviour {
                 break;
             case 2:
                 initCapitulo02();
+                break;
+            case 3:
+                initCapitulo03();
                 break;
         }
     }
@@ -197,8 +210,52 @@ public class GamePlayController : MonoBehaviour {
         GameObject.FindGameObjectWithTag("OBJ_TERRA").GetComponent<Image>().sprite = planetas[1];
 
         // Alterando variaveis
-        GameObject.FindGameObjectWithTag("TLT_GP_ANO").GetComponent<Text>().text = "3 MILHOES DE ANOS ATRAS";
+        GameObject.FindGameObjectWithTag("TLT_GP_ANO").GetComponent<Text>().text = "3 BILHOES DE ANOS ATRAS";
         GameObject.FindGameObjectWithTag("TLT_GP_CAP").GetComponent<Text>().text = "TERRA - Capitulo 02";
+        await Task.Delay(3500);
+        levelController.SetActive(false);
+    }
+
+    async void initCapitulo03() {
+
+        Animator animacao;
+        string[] capitulo03 = new string[5];
+
+        // Configura animacao
+        levelController.SetActive(true);
+        GameObject.FindGameObjectWithTag("LEVEL_TITLE").GetComponent<Text>().text = "C A P I T U L O  -  0 3";
+        GameObject.FindGameObjectWithTag("LEVEL_SUBTITLE").GetComponent<Text>().text = "TRANSFORMAÇÃO DA VIDA";
+
+        // Realizando animação de troca
+        animacao = levelController.GetComponent<Animator>();
+        animacao.SetTrigger("FadeOut");
+
+        await Task.Delay(1500);
+
+        // Elemento inicicias
+        capitulo03[0] = "ELEMENTO_VIDA";
+        capitulo03[1] = "ELEMENTO_TERRA";
+        capitulo03[2] = "ELEMENTO_ARVORE";
+        capitulo03[3] = "ELEMENTO_MAR";
+        capitulo03[4] = "ELEMENTO_IDEIA";
+        addElements(capitulo03);
+
+        // Adicionando lista de pendencias
+        listPendencias[0].GetComponent<Text>().text = "ANIMAL";
+        listPendencias[1].GetComponent<Text>().text = "MACACO";
+        listPendencias[2].GetComponent<Text>().text = "PEIXE";
+        listPendencias[3].GetComponent<Text>().text = "FERRAMENTA";
+        listPendencias[4].GetComponent<Text>().text = "HUMANO";
+        listPendencias[5].GetComponent<Text>().text = "FILOSOFIA";
+        listPendencias[6].GetComponent<Text>().text = "ENGENHARIA";
+        listPendencias[7].GetComponent<Text>().text = "MAQUINA";
+        listPendencias[8].GetComponent<Text>().text = "COMPUTADOR";
+
+        GameObject.FindGameObjectWithTag("OBJ_TERRA").GetComponent<Image>().sprite = planetas[2];
+
+        // Alterando variaveis
+        GameObject.FindGameObjectWithTag("TLT_GP_ANO").GetComponent<Text>().text = "2 MILHOES DE ANOS ATRAS - > ATUAL";
+        GameObject.FindGameObjectWithTag("TLT_GP_CAP").GetComponent<Text>().text = "TERRA - Capitulo 03";
         await Task.Delay(3500);
         levelController.SetActive(false);
     }
@@ -289,6 +346,21 @@ public class GamePlayController : MonoBehaviour {
                     titulo = "CONTINENTE";
                     img = iconElementosContinente;
                     break;
+
+                case "ELEMENTO_VIDA":
+                    titulo = "VIDA";
+                    img = iconElementoVida;
+                    break;
+
+                case "ELEMENTO_ARVORE":
+                    titulo = "ARVORE";
+                    img = iconElementoArvore;
+                    break;
+
+                case "ELEMENTO_IDEIA":
+                    titulo = "IDEIA";
+                    img = iconElementoIdeia;
+                    break;
             }
 
             addElementoOnTable(index, tags[index], titulo, img);
@@ -348,8 +420,6 @@ public class GamePlayController : MonoBehaviour {
     }
 
     bool toAuxCraft(string craft01, string craft02) {
-
-        Debug.Log(craft01+" - "+craft02);
 
         // N crafta caso algum deles desativado
         if ( slotCraft01[1].activeSelf == false || slotCraft02[1].activeSelf == false) {
