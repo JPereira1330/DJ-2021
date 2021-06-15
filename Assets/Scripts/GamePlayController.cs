@@ -44,7 +44,6 @@ public class GamePlayController : MonoBehaviour {
     void Start(){
 
         // Inicializacoes objetos
- 
         planetaTerra = GameObject.FindGameObjectWithTag("OBJ_TERRA");
         slotCraft01 = GameObject.FindGameObjectsWithTag("CRAFT_SLOT_01");
         slotCraft02 = GameObject.FindGameObjectsWithTag("CRAFT_SLOT_02");
@@ -271,6 +270,7 @@ public class GamePlayController : MonoBehaviour {
         listElementos[index].SetActive(true);
         listElementos[index].tag = tag;
         listElementos[index].GetComponent<Image>().sprite = img;
+        listElementos[index].GetComponent<Button>().onClick.RemoveAllListeners();
         listElementos[index].GetComponent<Button>().onClick.AddListener(delegate { addToCraft(titulo, img); });
         listElementos[index].GetComponentInChildren<Text>().text = titulo;
         
