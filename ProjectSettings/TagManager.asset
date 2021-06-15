@@ -40,6 +40,9 @@ TagManager:
   - AUDIO_BLEEP
   - LEVEL_TITLE
   - LEVEL_SUBTITLE
+  - Musica_Menu
+  - Musica_Intro
+  - Musica_Game
   layers:
   - Default
   - TransparentFX
